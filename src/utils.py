@@ -1,4 +1,3 @@
-import PIL.Image as Image
 import PIL.ImageDraw as ImageDraw
 
 
@@ -23,20 +22,20 @@ def add_visual_grid(image, grid_size=50):
             
     return image
 
-def draw_bbox(image, bbox, label=None):
+def draw_bbox(image, bbox, label=None, color="red", line_width=3):
     """
     在图片上绘制 bbox 用于可视化。
     bbox: [xmin, ymin, xmax, ymax] 归一化坐标
     """
     draw = ImageDraw.Draw(image)
-    width, height = image.size
+    img_w, img_h = image.size
     xmin, ymin, xmax, ymax = bbox
     
-    real_bbox = [xmin * width, ymin * height, xmax * width, ymax * height]
-    draw.rectangle(real_bbox, outline="red", width=3)
+    real_bbox = [xmin * img_w, ymin * img_h, xmax * img_w, ymax * img_h]
+    draw.rectangle(real_bbox, outline=color, width=line_width)
     
     if label:
-        draw.text((real_bbox[0], real_bbox[1] - 20), label, fill="red")
+        draw.text((real_bbox[0], real_bbox[1] - 20), label, fill=color)
     
     return image
 

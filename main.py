@@ -4,7 +4,7 @@ import os
 from PIL import Image
 
 from src.grounding_model import UIGroundingModel
-from src.utils import add_visual_grid, draw_bbox
+from src.utils import draw_bbox
 
 
 def run_evaluation():
@@ -53,9 +53,9 @@ def run_evaluation():
         print(f"预测 BBox: {pred_bbox}")
         print(f"真实 BBox: {gt_bbox}")
 
-        # 3. 结果可视化
-        result_img = draw_bbox(raw_img.copy(), pred_bbox, label="Pred")
-        result_img = draw_bbox(result_img, gt_bbox, label="GT") # 红色为预测，绿色(这里代码简化都用红色了)为真实
+        # 3. 结果可视化（Pred=红色，GT=绿色）
+        result_img = draw_bbox(raw_img.copy(), pred_bbox, label="Pred", color="red", line_width=3)
+        result_img = draw_bbox(result_img, gt_bbox, label="GT", color="lime", line_width=3)
         
         save_path = f"output/result_{img_id}.png"
         result_img.save(save_path)

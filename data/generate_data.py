@@ -64,3 +64,4 @@ def generate_mock_ui():
 if __name__ == "__main__":
     generate_mock_ui()
 
+
