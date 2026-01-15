@@ -31,7 +31,7 @@ class UIGroundingModel:
                 self.mode = "mock"
         elif mode == "api":
             import dashscope
-            self.api_key = api_key or os.getenv("DASHSCOPE_API_KEY") or 'sk-377fabbff2084817b5ac0cd6328b8760'
+            self.api_key = api_key or os.getenv("DASHSCOPE_API_KEY")
             dashscope.api_key = self.api_key
             print(f"Using Qwen API Mode (Model: {model_path})")
         else:
